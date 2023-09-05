@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NoImageSelected from '../../assets/no-image-selected.jpg'
 
+
 const CreateBook = () => {
     const [title, setTitle] = useState("")
     const [slug, setSlug] = useState("")
@@ -24,7 +25,9 @@ const CreateBook = () => {
       formData.append("description", description);
       formData.append("category", categories);
       formData.append("thumbnail", thumbnail)
+
   
+
       try {
         const response = await fetch("http://localhost:8000/api/books", {
           method: "POST",
@@ -45,6 +48,9 @@ const CreateBook = () => {
         
         const handleCategoryChange = (e) => {
           setCategories(e.target.value.split(",").map((category) => category.trim()));
+          if(!categories){
+            setCategories(["other"])
+          }
         }
         
         

@@ -56,6 +56,10 @@ const EditBook = () => {
       if (thumbnail) {
         formData.append("thumbnail", thumbnail);
       }
+
+      if(categories.length < 0){
+        setCategories(["other"])
+      }
   
       try {
         const response = await fetch("http://localhost:8000/api/books", {
